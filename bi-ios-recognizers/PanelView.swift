@@ -26,6 +26,7 @@ class PanelView : UIView {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 100
+        slider.value = 40
         slider.addTarget(self, action: "sliderChanged:", forControlEvents: UIControlEvents.ValueChanged)
         
         addSubview(slider)
@@ -35,7 +36,7 @@ class PanelView : UIView {
         stepper.minimumValue = 0;
         stepper.maximumValue = 100;
         stepper.stepValue = 1;
-        stepper.value = 0;
+        stepper.value = 1;
         stepper.addTarget(self, action: "stepperChanged:",
             forControlEvents: UIControlEvents.ValueChanged)
         

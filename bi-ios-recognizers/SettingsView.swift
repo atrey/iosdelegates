@@ -77,16 +77,16 @@ class SettingsView : UIView {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            settingsDelegate?.printColor("Biela ciara")
+            print("Biela ciara")
             settingsDelegate?.changeTileBackground(UIColor.whiteColor())
             settingsDelegate?.changeLineColor(UIColor.whiteColor())
             
         case 1:
-            settingsDelegate?.printColor("Cierna ciara")
+            print("Cierna ciara")
             settingsDelegate?.changeTileBackground(UIColor.blackColor())
             
         case 2:
-            settingsDelegate?.printColor("Modra ciara")
+            print("Modra ciara")
             settingsDelegate?.changeTileBackground(UIColor.blueColor())
             
         default:
@@ -103,7 +103,6 @@ class SettingsView : UIView {
 }
 
 protocol SettingsViewDelegate {
-    func printColor(nieco: String)
     func changeTileBackground(background: UIColor)
     func changeLineColor(color: UIColor)
 }

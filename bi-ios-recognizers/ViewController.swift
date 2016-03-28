@@ -77,9 +77,7 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
         
     }
     
-    func printColor(nieco: String) {
-        print(nieco)
-    }
+    
     
     func changeTileBackground(background: UIColor) {
         self.graphView.backgroundColor = background
