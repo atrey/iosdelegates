@@ -77,14 +77,16 @@ class SettingsView : UIView {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            settingsDelegate?.napisNiecoDoKokotiny("Biela ciara")
-            settingsDelegate?.changeTileBackground(UIColor.whiteColor())            
+            settingsDelegate?.printColor("Biela ciara")
+            settingsDelegate?.changeTileBackground(UIColor.whiteColor())
+            settingsDelegate?.changeLineColor(UIColor.whiteColor())
+            
         case 1:
-            settingsDelegate?.napisNiecoDoKokotiny("Cierna ciara")
+            settingsDelegate?.printColor("Cierna ciara")
             settingsDelegate?.changeTileBackground(UIColor.blackColor())
             
         case 2:
-            settingsDelegate?.napisNiecoDoKokotiny("Modra ciara")
+            settingsDelegate?.printColor("Modra ciara")
             settingsDelegate?.changeTileBackground(UIColor.blueColor())
             
         default:
@@ -101,8 +103,9 @@ class SettingsView : UIView {
 }
 
 protocol SettingsViewDelegate {
-    func napisNiecoDoKokotiny(nieco: String)
+    func printColor(nieco: String)
     func changeTileBackground(background: UIColor)
+    func changeLineColor(color: UIColor)
 }
 
 

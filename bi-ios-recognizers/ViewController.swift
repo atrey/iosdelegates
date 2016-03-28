@@ -77,14 +77,17 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
         
     }
     
-    func napisNiecoDoKokotiny(nieco: String) {
+    func printColor(nieco: String) {
         print(nieco)
     }
     
     func changeTileBackground(background: UIColor) {
-        graphView.backgroundColor = background
+        self.graphView.backgroundColor = background
     }
     
+    func changeLineColor(color: UIColor) {
+        
+    }
     
     
     

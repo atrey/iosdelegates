@@ -66,7 +66,7 @@ class GraphView : UIView {
         super.drawRect(rect)
         let context = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor);
-        CGContextSetLineWidth(context, 2);
+        CGContextSetLineWidth(context, 3);
         CGContextMoveToPoint(context, 0, offset);
         var dataAmplitude  = ""
         for (var i : CGFloat = 0; i <  frame.width; i += 1) {
