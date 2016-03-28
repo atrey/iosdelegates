@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate {
+class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate, GraphViewDelegate {
     
     weak var graphView : GraphView!
     weak var panelView : PanelView!
@@ -25,11 +25,13 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
         
         
         // graph view
-        let gv = GraphView(frame: CGRectZero)
+        var gv = GraphView(frame: CGRectZero)
         gv.autoresizingMask = UIViewAutoresizing.FlexibleWidth;
         
         self.view.addSubview(gv)
         self.graphView = gv
+        
+        gv.graphDelegate = self
         
         
         
@@ -71,10 +73,9 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
        // self.graphView.amplitude = CGFloat(slider.value);
         
     }
-    
+    //steper delegate
     func stepperDidChange(stepper: UIStepper, panel: PanelView) {
         self.graphView.period = CGFloat(stepper.value);
-        
     }
     
     
@@ -87,7 +88,15 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
         self.graphView.lineColor = color
     }
     
-    
+    func dataAmplitude(amplitude: String) {
+        settingsView.labelAltitude.text = amplitude
+    }
+    func dataPeriod(period: String) {
+        settingsView.labelPeriod.text = period
+    }
+    func dataOffset(offset: String) {
+        settingsView.labelOffset.text = offset
+    }
     
     
     override func viewWillAppear(animated: Bool) {

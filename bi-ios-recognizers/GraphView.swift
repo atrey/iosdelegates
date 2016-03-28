@@ -11,6 +11,9 @@ import UIKit
 
 class GraphView : UIView {
     
+    var graphDelegate : GraphViewDelegate?
+    
+    
     var amplitude : CGFloat = 40.0 {
         didSet {
             setNeedsDisplay()
@@ -41,13 +44,13 @@ class GraphView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         offset = CGRectGetHeight(self.bounds) / 2.0
-        self.labelAmplitudeOnGraph.frame = CGRectMake(8, 8 + 8 + 20, CGRectGetWidth(self.bounds) - 16 + 84, 20)
+        /* self.labelAmplitudeOnGraph.frame = CGRectMake(8, 8 + 8 + 20, CGRectGetWidth(self.bounds) - 16 + 84, 20)
         addSubview(labelAmplitudeOnGraph)
         self.labelPeriodOnGraph.frame = CGRectMake(8, 8 + 8 + 20 + 20, CGRectGetWidth(self.bounds) - 16 + 84, 20)
         addSubview(labelPeriodOnGraph)
         self.labelOffsetOnGraph.frame = CGRectMake(8, 8 + 8 + 20 + 20 + 20, CGRectGetWidth(self.bounds) - 16 + 84, 20)
         addSubview(labelOffsetOnGraph)
-
+*/
         
         
     }
@@ -55,6 +58,7 @@ class GraphView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.lightGrayColor()
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -72,11 +76,13 @@ class GraphView : UIView {
         for (var i : CGFloat = 0; i <  frame.width; i += 1) {
             let y = self.amplitude * sin(i/frame.width * period * 2 * CGFloat(M_PI)) + offset
             CGContextAddLineToPoint(context, i, y);
-            labelAmplitudeOnGraph.text = "\(amplitude)"
-            labelPeriodOnGraph.text = "\(period)"
-            labelOffsetOnGraph.text = "\(offset)"
+            labelAmplitudeOnGraph.text = "A: \(amplitude)"
+            labelPeriodOnGraph.text = "P: \(period)"
+            labelOffsetOnGraph.text = "O: \(offset)"
             
-            
+            graphDelegate?.dataAmplitude(labelAmplitudeOnGraph.text!)
+            graphDelegate?.dataPeriod(labelPeriodOnGraph.text!)
+            graphDelegate?.dataOffset(labelOffsetOnGraph.text!)
             
         }
         
@@ -86,6 +92,12 @@ class GraphView : UIView {
         CGContextStrokePath(context);
     }
     
+}
+
+protocol GraphViewDelegate {
+    func dataAmplitude(amplitude: String)
+    func dataPeriod(period: String)
+    func dataOffset(offset: String)
 }
 
 

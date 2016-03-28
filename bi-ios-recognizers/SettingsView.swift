@@ -47,6 +47,8 @@ class SettingsView : UIView {
         labelAltitude.textColor = UIColor.whiteColor()
         addSubview(labelAltitude)
         
+       
+        
         //label - period
         labelPeriod.text = "P: \(dataFromGraph.period)"
         labelPeriod.textColor = UIColor.whiteColor()
