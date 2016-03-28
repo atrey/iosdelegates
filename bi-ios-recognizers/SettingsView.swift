@@ -15,8 +15,6 @@ class SettingsView : UIView {
     let dataFromGraph = GraphView()
     
     var settingsDelegate : SettingsViewDelegate?
-    var lineDelegate: SettingsLineDelegate?
-    
     
     
     
@@ -26,13 +24,9 @@ class SettingsView : UIView {
     
     
     
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.lightGrayColor()
-        let gvs = GraphView()
-        
         
         
         //stepper
@@ -54,9 +48,6 @@ class SettingsView : UIView {
         //label - period
         labelPeriod.text = "Perioda je: \(dataFromGraph.period)"
         labelPeriod.textColor = UIColor.whiteColor()
-        func returnValue(periodValue: String) {
-            
-        }
         addSubview(labelPeriod)
         
         
@@ -87,10 +78,7 @@ class SettingsView : UIView {
         switch sender.selectedSegmentIndex {
         case 0:
             settingsDelegate?.napisNiecoDoKokotiny("Biela ciara")
-            settingsDelegate?.changeTileBackground(UIColor.whiteColor())
-            lineDelegate?.changeLineColor(UIColor.whiteColor().CGColor)
-            self.labelAltitude.textColor = UIColor.blackColor()
-            
+            settingsDelegate?.changeTileBackground(UIColor.whiteColor())            
         case 1:
             settingsDelegate?.napisNiecoDoKokotiny("Cierna ciara")
             settingsDelegate?.changeTileBackground(UIColor.blackColor())
@@ -117,7 +105,4 @@ protocol SettingsViewDelegate {
     func changeTileBackground(background: UIColor)
 }
 
-protocol SettingsLineDelegate {
-    func changeLineColor(color: CGColor)
-}
 

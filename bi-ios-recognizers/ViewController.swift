@@ -74,6 +74,7 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
     
     func stepperDidChange(stepper: UIStepper, panel: PanelView) {
         self.graphView.period = CGFloat(stepper.value);
+        
     }
     
     func napisNiecoDoKokotiny(nieco: String) {
@@ -143,6 +144,9 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
             return
         }
     }
+    
+    
+    
     
 
     override func didReceiveMemoryWarning() {

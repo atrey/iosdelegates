@@ -9,12 +9,7 @@
 import Foundation
 import UIKit
 
-class GraphView : UIView{
-    
-    weak var settingsView : SettingsView!
-    
-    var graphDelegate : GraphViewDelegate?
-    
+class GraphView : UIView {
     
     var amplitude : CGFloat = 40.0 {
         didSet {
@@ -36,7 +31,6 @@ class GraphView : UIView{
     
     
     
-    
     var labelAmplitudeOnGraph: UILabel = UILabel()
     var labelPeriodOnGraph: UILabel = UILabel()
     var labelOffsetOnGraph: UILabel = UILabel()
@@ -52,8 +46,7 @@ class GraphView : UIView{
         addSubview(labelPeriodOnGraph)
         self.labelOffsetOnGraph.frame = CGRectMake(8, 8 + 8 + 20 + 20 + 20, CGRectGetWidth(self.bounds) - 16 + 84, 20)
         addSubview(labelOffsetOnGraph)
-        
-        
+
         
         
     }
@@ -61,7 +54,6 @@ class GraphView : UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.lightGrayColor()
-        
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -72,26 +64,17 @@ class GraphView : UIView{
     override func drawRect(rect: CGRect) {
         
         super.drawRect(rect)
-        let context = UIGraphicsGetCurrentContext()
-        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-        CGContextSetLineWidth(context, 2)
-        CGContextMoveToPoint(context, 0, offset)
-        _  = ""
+        let context = UIGraphicsGetCurrentContext();
+        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor);
+        CGContextSetLineWidth(context, 2);
+        CGContextMoveToPoint(context, 0, offset);
+        var dataAmplitude  = ""
         for (var i : CGFloat = 0; i <  frame.width; i += 1) {
             let y = self.amplitude * sin(i/frame.width * period * 2 * CGFloat(M_PI)) + offset
             CGContextAddLineToPoint(context, i, y);
             labelAmplitudeOnGraph.text = "amplitude \(amplitude)"
             labelPeriodOnGraph.text = " period \(period)"
             labelOffsetOnGraph.text = " offset \(offset)"
-            
-            graphDelegate?.returnValue("\(period)")
-            
-            let sv = SettingsView()
-            self.settingsView = sv
-            
-            func changeLineColor(color: UIColor){
-                CGContextSetStrokeColorWithColor(context, color.CGColor)
-            }
             
         }
         
@@ -102,11 +85,6 @@ class GraphView : UIView{
     }
     
 }
-
-protocol GraphViewDelegate {
-    func returnValue(periodValue: String)
-    }
-
 
 
   
