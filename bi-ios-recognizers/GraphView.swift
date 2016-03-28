@@ -76,9 +76,9 @@ class GraphView : UIView {
         for (var i : CGFloat = 0; i <  frame.width; i += 1) {
             let y = self.amplitude * sin(i/frame.width * period * 2 * CGFloat(M_PI)) + offset
             CGContextAddLineToPoint(context, i, y);
-            labelAmplitudeOnGraph.text = "A: \(amplitude)"
+            labelAmplitudeOnGraph.text = "A: \(round(amplitude))"
             labelPeriodOnGraph.text = "P: \(period)"
-            labelOffsetOnGraph.text = "O: \(offset)"
+            labelOffsetOnGraph.text = "O: \(round(offset))"
             
             graphDelegate?.dataAmplitude(labelAmplitudeOnGraph.text!)
             graphDelegate?.dataPeriod(labelPeriodOnGraph.text!)
