@@ -21,6 +21,7 @@ class SettingsView : UIView {
     weak var segmenter : UISegmentedControl!
     var labelAltitude : UILabel = UILabel()
     var labelPeriod: UILabel = UILabel()
+    var labelOffset: UILabel = UILabel()
     
     
     
@@ -31,7 +32,7 @@ class SettingsView : UIView {
         
         //stepper
         //items 
-        let items = ["Biela","Cierna","Modra"]
+        let items = ["Zelena","Cierna","Modra"]
         let segmenter = UISegmentedControl(items: items)
         segmenter.selectedSegmentIndex = 0
         segmenter.addTarget(self, action: #selector(SettingsView.changeColor(_:)), forControlEvents: UIControlEvents.ValueChanged)
@@ -41,15 +42,19 @@ class SettingsView : UIView {
         
         // label - altitude
         
-        labelAltitude.text = "Amplituda je: \(dataFromGraph.labelAmplitudeOnGraph.text)"
+        
+        labelAltitude.text = "A: \(dataFromGraph.amplitude)"
         labelAltitude.textColor = UIColor.whiteColor()
         addSubview(labelAltitude)
         
         //label - period
-        labelPeriod.text = "Perioda je: \(dataFromGraph.period)"
+        labelPeriod.text = "P: \(dataFromGraph.period)"
         labelPeriod.textColor = UIColor.whiteColor()
         addSubview(labelPeriod)
         
+        labelOffset.text = "O: \(dataFromGraph.offset)"
+        labelOffset.textColor = UIColor.whiteColor()
+        addSubview(labelOffset)
         
         
         
@@ -64,6 +69,7 @@ class SettingsView : UIView {
         super.layoutSubviews()
         self.segmenter.frame = CGRectMake(8, 8, CGRectGetWidth(self.bounds) - 16, 20);
         self.labelAltitude.frame = CGRectMake(8, 8 + 8 + 20, CGRectGetWidth(self.bounds) - 16 + 84, 20)
+        self.labelOffset.frame = CGRectMake(8, 8 + 8 + 20 + 20 + 28, CGRectGetWidth(self.bounds) - 16 + 84 , 20)
         
         //nastavenie kde ma byt polozeny ten label. 8 - zlava, 8+ 8+ 44+30 - zhora, nastavenie sirky - minus 16, pretoze to je zlava a zprava a 30 vyska
         
@@ -77,18 +83,18 @@ class SettingsView : UIView {
         
         switch sender.selectedSegmentIndex {
         case 0:
-            print("Biela ciara")
+            
             settingsDelegate?.changeTileBackground(UIColor.whiteColor())
-            settingsDelegate?.changeLineColor(UIColor.whiteColor())
+            settingsDelegate?.changeLineColor(UIColor.greenColor())
             
         case 1:
-            print("Cierna ciara")
-            settingsDelegate?.changeTileBackground(UIColor.blackColor())
             
+            settingsDelegate?.changeTileBackground(UIColor.orangeColor())
+            settingsDelegate?.changeLineColor(UIColor.blackColor())
         case 2:
-            print("Modra ciara")
-            settingsDelegate?.changeTileBackground(UIColor.blueColor())
             
+            settingsDelegate?.changeTileBackground(UIColor.blueColor())
+            settingsDelegate?.changeLineColor(UIColor.yellowColor())
         default:
             dataFromGraph.backgroundColor = UIColor.greenColor()
         }

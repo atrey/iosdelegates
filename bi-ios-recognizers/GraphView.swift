@@ -29,6 +29,7 @@ class GraphView : UIView {
         }
     }
     
+    var lineColor : UIColor! = UIColor.whiteColor()
     
     
     var labelAmplitudeOnGraph: UILabel = UILabel()
@@ -64,17 +65,18 @@ class GraphView : UIView {
     override func drawRect(rect: CGRect) {
         
         super.drawRect(rect)
-        let context = UIGraphicsGetCurrentContext();
-        CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor);
+        var context = UIGraphicsGetCurrentContext();
+        CGContextSetStrokeColorWithColor(context, lineColor.CGColor);
         CGContextSetLineWidth(context, 3);
         CGContextMoveToPoint(context, 0, offset);
-        var dataAmplitude  = ""
         for (var i : CGFloat = 0; i <  frame.width; i += 1) {
             let y = self.amplitude * sin(i/frame.width * period * 2 * CGFloat(M_PI)) + offset
             CGContextAddLineToPoint(context, i, y);
-            labelAmplitudeOnGraph.text = "amplitude \(amplitude)"
-            labelPeriodOnGraph.text = " period \(period)"
-            labelOffsetOnGraph.text = " offset \(offset)"
+            labelAmplitudeOnGraph.text = "\(amplitude)"
+            labelPeriodOnGraph.text = "\(period)"
+            labelOffsetOnGraph.text = "\(offset)"
+            
+            
             
         }
         

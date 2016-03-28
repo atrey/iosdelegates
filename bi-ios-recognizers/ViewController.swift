@@ -84,7 +84,7 @@ class ViewController: UIViewController, PanelViewDelegate, SettingsViewDelegate 
     }
     
     func changeLineColor(color: UIColor) {
-        
+        self.graphView.lineColor = color
     }
     
     
